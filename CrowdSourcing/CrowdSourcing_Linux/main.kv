@@ -1,0 +1,1762 @@
+#: import MapView kivy.garden.mapview.MapView
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import CheckBox kivy.uix.checkbox 
+
+
+<ScreenManagement>:
+    transition: FadeTransition()
+    Menu:
+    Map:
+    Map_root:
+    Form:
+    Form_1:
+    Top:
+    Stats:
+    Advice:
+    Top_min:
+    Map_pharmacy:
+    Transport:
+    Transport_Troll:
+    Transport_root:
+    Transport_Troll_root:
+
+    Sites:
+    Stats_root:
+    
+<Menu>:
+	name: "menu"
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+			Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos 
+
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 300]
+		spacing: 40
+
+		Button:
+			text: "К карте".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "map"
+		
+		Button:
+			text:"Заполнить анкету".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "form"
+	AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'top'
+		Label:
+			text:"CrowdSourcing\n"
+			font_size: 40
+			color: 0, 0, 0, 1
+			size_hint:  None, None
+		Label:
+			text: "\n\nСледите за эпидемиологической\n      обстановкой в Ульяновске".encode('cp1251').decode('utf-8')
+			font_size: 15
+			color: 0, 0, 0, 1
+			size_hint:  None, None
+	
+
+<Sites>:
+	name:"sites"
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos
+    
+    AnchorLayout:
+	    anchor_x: "center"
+	    anchor_y:"top"
+	    Label:
+			text: "Вызовите скорую но номеру 113 или закажите\n выезд врача через сайт одной из клиник:".encode('cp1251').decode('utf-8')
+			halign: 'center'
+			size_hint: None, None
+	    	color: 0, 0, 0, 1
+	    	font_size: 17
+		    
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 250]
+		spacing: 40
+
+		Button:
+			url: "https://shageev.ru/"
+			text:"Клиника д. Шагеева".encode('cp1251').decode('utf-8')
+		    color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 23
+			size: 290, 50
+			opacity: 1
+		    on_release:
+		    	root.open(self.url)
+		Button:
+			url: "https://ulyanovsk.nevaclinic.ru/"
+			text:"Клиника Нева".encode('cp1251').decode('utf-8')
+		    color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 23
+			size: 290, 50
+			opacity: 1
+		    on_release:
+		    	root.open(self.url)
+
+		Button:
+			url: "http://panaceya73.ru/"
+			text:"Панацея".encode('cp1251').decode('utf-8')
+		    color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+		    on_release:
+		    	root.open(self.url)
+		
+		Button:
+			url: "http://www.ulmedozon.ru/"
+			text:"Медозон".encode('cp1251').decode('utf-8')
+		    color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+		    on_release:
+		    	root.open(self.url)
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40	
+		
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+
+<Map_root>:
+	name: "map_root"
+	MapView:
+
+		lat: 54.3
+		lon: 48.383
+		
+		zoom: 10
+		
+		on_zoom:
+			self.zoom = 10 if self.zoom < 10 else self.zoom
+		
+		double_tap_zoom: True
+		
+		MapMarkerPopup:
+			lat: 54.37701529832452
+			lon: 48.57918960936232
+			Button:
+				idi: '1'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(1)
+		MapMarkerPopup:
+			lat: 54.36919984604893
+			lon: 48.58717726416259
+			Button:
+				idi: '2'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(2)
+		MapMarkerPopup:
+			lat: 54.37195190564484
+			lon: 48.58380586529006
+			Button:
+				idi: '3'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(3)
+
+		MapMarkerPopup:
+			lat: 54.38381518592436
+			lon: 48.59876863421579
+			Button:
+				idi: '4'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(4)
+		MapMarkerPopup:
+			lat: 54.38238464808381
+			lon: 48.585686091464396
+			Button:
+				idi: '5'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(5)
+		MapMarkerPopup:
+			lat: 54.36210271314227
+			lon: 48.571614962937275
+			Button:
+				idi: '6'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(6)
+		MapMarkerPopup:
+			lat: 54.37374516520873
+			lon: 48.58073366958544
+			Button:
+				idi: '7'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(7)
+		MapMarkerPopup:
+			lat: 54.376473475856784
+			lon: 48.57800681853291
+			Button:
+				idi: '8'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(8)
+		MapMarkerPopup:
+			lat: 54.37860216583274
+			lon: 48.57505344302257
+			Button:
+				idi: '9'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(9)
+		MapMarkerPopup:
+			lat: 54.37921201229643
+			lon: 48.57639907030915
+			Button:
+				idi: '10'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(10)
+
+		MapMarkerPopup:
+			lat: 54.37450602779402
+			lon: 48.59795153367537
+			Button:
+				idi: '11'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(11)
+		MapMarkerPopup:
+			lat: 54.35961872693277
+			lon: 48.56434049691771
+			Button:
+				idi: '12'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(12)
+
+		MapMarkerPopup:
+			lat: 54.30671351242369
+			lon: 48.35969930402811
+			Button:
+				idi: '13'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(13)
+		MapMarkerPopup:
+			lat: 54.30925433006986
+			lon: 48.32608817711119
+			Button:
+				idi: '14'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(14)
+		MapMarkerPopup:
+			lat: 54.38622084526809
+			lon: 48.57885224862241
+			Button:
+				idi: '15'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(15)
+		MapMarkerPopup:
+			lat: 54.353948059042146
+			lon: 48.540645458588074
+			Button:
+				idi: '16'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(16)
+		MapMarkerPopup:
+			lat: 54.3438214830853
+			lon: 48.54305447267697
+			Button:
+				idi: '17'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(17)
+		MapMarkerPopup:
+			lat: 54.37256674165415
+			lon: 48.58506240614025
+			Button:
+				idi: '18'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(18)
+		MapMarkerPopup:
+			lat: 54.374694503668685
+			lon: 48.5822353796959
+			Button:
+				idi: '19'
+				text: 'Был тут'.encode('cp1251').decode('utf-8')
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				on_release:
+					root.update(self.idi)
+					print(19)
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "Далее".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "trans_root"
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Укажите общественные места, где вы были за две\n недели до проявления симптомов'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		halign:"center"
+	
+<Map>
+	name: "map"
+	MapView:
+		lat: 54.3
+		lon: 48.383
+		
+		zoom: 10
+		
+		on_zoom:
+			self.zoom = 10 if self.zoom < 10 else self.zoom
+		double_tap_zoom: True
+		
+		MapMarkerPopup:
+			lat: 54.37701529832452
+			lon: 48.57918960936232
+			Button:
+				idi: '1'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup:
+			lat: 54.36919984604893
+			lon: 48.58717726416259
+			Button:
+				idi: '2'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+	
+		MapMarkerPopup:
+			lat: 54.37195190564484
+			lon: 48.58380586529006
+			Button:
+				idi: '3'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup:
+			lat: 54.38381518592436
+			lon: 48.59876863421579
+			Button:
+				idi: '4'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+			
+		MapMarkerPopup:
+			lat: 54.38238464808381
+			lon: 48.585686091464396
+			Button:
+				idi: '5'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+			
+		MapMarkerPopup:
+			lat: 54.36210271314227
+			lon: 48.571614962937275
+			Button:
+				idi: '6'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #lider
+			lat: 54.374694503668685
+			lon: 48.5822353796959
+			Button:
+				idi: '7'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #dom svisi
+			lat: 54.37374516520873
+			lon: 48.58073366958544
+			Button:
+				idi: '8'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #boston
+			lat: 54.376473475856784
+			lon: 48.57800681853291
+			Button:
+				idi: '9'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #panorama
+			lat: 54.37860216583274
+			lon: 48.57505344302257
+			Button:
+				idi: '10'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #stroigrad
+			lat: 54.37921201229643
+			lon: 48.57639907030915
+			Button:
+				idi: '11'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #rim
+			lat: 54.37450602779402
+			lon: 48.59795153367537
+			Button:
+				idi: '12'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #sozidatel
+			lat: 54.35961872693277
+			lon: 48.56434049691771
+			Button:
+				idi: '13'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #akvamol
+			lat: 54.30671351242369
+			lon: 48.35969930402811
+			Button:
+				idi: '14'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #megastroi
+			lat: 54.30925433006986
+			lon: 48.32608817711119
+			Button:
+				idi: '15'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #sarai
+			lat: 54.38622084526809
+			lon: 48.57885224862241
+			Button:
+				idi: '16'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #varhnia terrasa
+			lat: 54.353948059042146
+			lon: 48.540645458588074
+			Button:
+				idi: '17'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #solnechnii
+			lat: 54.3438214830853
+			lon: 48.54305447267697
+			Button:
+				idi: '18'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+		MapMarkerPopup: #grand
+			lat: 54.37256674165415
+			lon: 48.58506240614025
+			Button:
+				idi: '19'
+				text: 'Здесь\nзаболело:\n'.encode('cp1251').decode('utf-8') + str(root.get_count(self.idi)).encode('cp1251').decode('utf-8')
+				halign: 'center'
+				font_size: 13.5
+				background_color: 0.1, 0.5, 0.6, 1
+				oposity: 4
+				disabled: False
+
+
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "В меню".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+	AnchorLayout:
+    	anchor_x: 'left'
+    	anchor_y: 'top'
+    	Button:
+    		text: "|||".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 50, 50
+			opacity: 1
+			on_release: app.root.current = "stats"
+	
+	
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [200, 20, 200, 60]
+		spacing: 40
+
+		AnchorLayout:
+			anchor_x: 'center'
+	        anchor_y: 'top'
+			Label:
+				text:"\nДля редактирования меток заполните анкету".encode('cp1251').decode('utf-8')
+				color: [0, 0, 0, 1]
+				size_hint:  None, None
+
+<Map_pharmacy>:
+	name:'map_pharmacy'
+	MapView:
+		lat: 54.3
+		lon: 48.383
+
+		zoom: 10
+
+		on_zoom:
+			self.zoom = 10 if self.zoom < 10 else self.zoom
+		double_tap_zoom: True
+		
+		MapMarkerPopup:
+			lat: 54.378666189477734
+			lon: 48.57493835726768
+			color: 0, 0, 255, 0.5
+
+		MapMarkerPopup:
+			lat: 54.378129524473955
+			lon: 48.577898621950425
+			color: 0, 0, 255, 0.5
+
+		MapMarkerPopup:
+			lat: 54.37460961651949
+			lon: 48.582553668499
+			color: 0, 0, 255, 0.5
+
+		MapMarkerPopup:
+			lat: 54.3705928199712
+			lon: 48.58747627921147
+			color: 0, 0, 255, 0.5
+
+		MapMarkerPopup:
+			lat: 54.37274118905098
+			lon: 48.58491972830018
+			color: 0, 0, 255, 0.5
+
+		MapMarkerPopup:
+			lat: 54.377226397151055
+			lon: 48.59402627015419
+			color: 0, 0, 255, 0.5
+
+
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "В меню".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+<CustLabel@Label>: 
+    color: 1, 1, 1, 1
+<Form>:
+	name: "form"
+	
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos
+
+    AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Укажите Вашу степень заражения:'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 17
+    		
+    
+    AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: '\n\n\n (можно выбрать только один вариант)\n'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 15
+	
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+        spacing: 10
+		
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, -40]
+			spacing: 20	
+			CheckBox: 
+				k: 0
+			    color: .294, .761, .623
+			    on_active: 
+			    	app.root.current = "map_root"
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+
+			Label: 
+                text: "У меня подтвержден COVID-19".encode('cp1251').decode('utf-8')
+                size_hint_x: .08
+                font_size: 14
+                color: 214, 222, 177, 1
+                size_hint:  None, None		
+		
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 30]
+			spacing: 40
+			CheckBox: 
+			    k: 0
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b += 0
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+
+			Label: 
+                text: "Ожидаю результатов тестирования".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+							
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 100]
+			spacing: 40
+			CheckBox: 
+			    k: 0
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b += 0.2
+			    size_hint_x: .20
+			    size_hint:  None, None 
+			    opacity: 4
+			Label: 
+                text: "Был в контакте с подтвержденным\nслучаем".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+			
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 170]
+			spacing: 40
+			CheckBox: 
+			    k: 0 
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b += 0.2
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Был в контакте с потенциальным\nносителем".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+        BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 240]
+			spacing: -7
+			CheckBox: 
+			    k: 0 
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.maximum()
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Я уже переболел(а)".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+    
+
+    BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "Далее".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "form_1"
+		
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+	
+			
+
+<Form_1>:
+	name: "form_1"
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Укажите Ваши симптомы:'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 17
+    AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: '\n\n (можно выбрать несколько вариантов)'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 15
+	
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+        spacing: 10
+
+        BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, -50]
+			spacing: 10
+			
+			CheckBox: 
+				k: 0
+			    color: .294, .761, .623
+			    on_active: 
+			    	root.b_simpt: 0.2
+			    	app.root.current = "advice"
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Повышенная температура\n(37° и более)".encode('cp1251').decode('utf-8')
+                size_hint_x: .08
+                font_size: 14
+                color: 214, 222, 177, 1
+                size_hint:  None, None
+
+			
+
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 60]
+			spacing: 40
+			CheckBox: 
+			    k: 0
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b_simpt: 0.2
+			    	app.root.current = "advice"
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Затрудненное дыхание или одышка".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+			
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 170]
+			spacing: 30
+			CheckBox: 
+			    k: 0
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b_simpt += 1
+			    	app.root.current = "map_root"
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Отсутствие запахов или вкусов".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+			
+		BoxLayout: 
+			orientation: "horizontal"
+			padding: [18, 20, 200, 280]
+			spacing: 45
+			CheckBox: 
+			    k: 0 
+			    color:.294, .761, .623
+			    on_active: 
+			    	root.b_simpt : 0.2
+			    	app.root.current = "advice"
+			    size_hint_x: .20
+			    size_hint:  None, None
+			    opacity: 4
+			Label: 
+                text: "Утомляемость и общее недомогание".encode('cp1251').decode('utf-8')
+                size_hint_x: .80
+                color: 214, 222, 177, 1
+                font_size: 14
+                size_hint:  None, None
+
+    BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "К карте".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "map"
+		
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+<Top>:
+	name: 'top'
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos
+	AnchorLayout:
+		anchor_x: 'center'
+		anchor_y: 'top'
+		Label:
+			text: 'Топ-3 опасных для посещения мест'.encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 17	
+    BoxLayout:
+		orientation: 'vertical'
+		padding: [150, 0, 200, 380]
+		spacing: -20
+		Label:
+			text: str(root.top_1()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+		Label:
+			text: str(root.top_2()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+		Label:
+			text: str(root.top_3()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+	BoxLayout:
+		orientation: 'vertical'
+		padding: [150, 20, 200, 210]
+		spacing: -10
+		Label:
+			text:"Это самые опасные места.\nПросим Вас не посещать их.\nБолее безопасные места:".encode('cp1251').decode('utf-8') + '\n' + '\n' + '1)' + str(root.top_1_good()) + '\n' + '2)' + str(root.top_2_good()) + '\n' + '3)' + str(root.top_3_good())
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+ 
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "Назад".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "stats_root"
+
+<Top_min>:
+	name:'top_min'
+	FloatLayout:
+        orientation: 'horizontal'
+        canvas:
+            Rectangle:
+                source: "pic_z.png"
+                size: self.size
+                pos: self.pos
+	AnchorLayout:
+		anchor_x: 'center'
+		anchor_y: 'top'
+		Label:
+			text: 'Топ-3 безопасных для посещения мест'.encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 17	
+    BoxLayout:
+		orientation: 'vertical'
+		padding: [150, 20, 200, 200]
+		spacing: 45
+		Label:
+			text: str(root.top_1()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+		Label:
+			text: str(root.top_2()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+		Label:
+			text: str(root.top_3()) + " заболевших".encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 20
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+
+		Button:
+			text: "Назад".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "stats_root"
+
+
+<Stats_root>:
+	name: 'stats_root'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 200]
+		spacing: 40
+		
+		Button:
+			text: "Топ-3 опасных мест".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "top"
+		
+		Button:
+			text:"Топ-3 безопасных мест".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "top_min"
+		Button:
+			text:"Городской транспорт".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "trans_root"
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+<Stats>:
+	name: 'stats'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 200]
+		spacing: 40
+		
+		Button:
+			text: "Топ-3 опасных мест".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "top"
+		
+		Button:
+			text:"Топ-3 безопасных мест".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "top_min"
+		Button:
+			text:"Городской транспорт".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "trans"
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+<Advice>:
+	name: 'advice'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	AnchorLayout:
+		anchor_x: 'center'
+        anchor_y: 'top'
+		Label:
+			text:"CrowdSourcing\n"
+			font_size: 40
+			color: 0, 0, 0, 1
+			size_hint:  None, None
+		Label:
+			text: "\n\nСледите за эпидемиологической\n      обстановкой в Ульяновске".encode('cp1251').decode('utf-8')
+			font_size: 15
+			color: 0, 0, 0, 1
+			size_hint:  None, None
+	AnchorLayout:
+		anchor_x: 'center'
+		anchor_y: 'center'
+		
+		Label:
+			text: 'Симптомов коронавируса у Вас не обнаружено!\n Мы советуем Вам сходить к врачу\n и купить лекарства в аптеке по его \nрецепту'.encode('cp1251').decode('utf-8')
+			size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 17
+    		halign: 'center'
+    	BoxLayout:
+			orientation: "vertical"
+	        height: 10
+			padding: [60, 20, 200, 60]
+			spacing: 40
+
+			Button:
+				text: "Посмотреть аптеки".encode('cp1251').decode('utf-8')
+				color: 1,1,1,1
+				background_color: 0.1, 0.5, 0.6, 1
+				size_hint: None, None
+				font_size: 25
+				size: 290, 50
+				opacity: 1
+				on_release: app.root.current = "map_pharmacy"
+			Button:
+				text: "В меню".encode('cp1251').decode('utf-8')
+				color: 1,1,1,1
+				background_color: 0.1, 0.5, 0.6, 1
+				size_hint: None, None
+				font_size: 25
+				size: 290, 50
+				opacity: 1
+				on_release: app.root.current = "menu"
+
+<Transport_root>:
+	name: 'trans_root'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Маршрутки\n'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 25
+    	Label:
+    		text: '\n\nОтметьте маршруты, которыми вы пользовались\n за две недели до проявления симптомов'.encode('cp1251').decode('utf-8')
+    		halign: 'center'
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+	GridLayout:
+		cols: 3  
+		rows: 5
+		padding: [20, 100, 20, 340]
+    	Button:
+    		idi: '1'
+    		halign: 'center'
+    		text: '#42'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '2'
+    		halign: 'center'
+    		text: '#28'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '3'
+    		halign: 'center'
+    		text: '#68'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '4'
+    		halign: 'center'
+    		text: '#25'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '5'
+    		halign: 'center'
+    		text: '#84'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '6'
+    		halign: 'center'
+    		text: '#96'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+	
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+		Button:
+			text: "Троллейбусы".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "troll_root"
+		
+		Button:
+			text:"Далее".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "sites"
+
+<Transport_Troll_root>:
+	name: 'troll_root'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Троллейбусы\n'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 25
+    	Label:
+    		text: '\n\nОтметьте маршруты, которыми вы пользовались\n за две недели до проявления симптомов'.encode('cp1251').decode('utf-8')
+    		halign: 'center'
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+	GridLayout:
+		cols: 3  
+		rows: 4
+		padding: [20, 100, 20, 340]
+    	Button:
+    		idi: '7'
+    		halign: 'center'
+    		text: '#1'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '8'
+    		halign: 'center'
+    		text: '#15'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '9'
+    		halign: 'center'
+    		text: '#107'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '10'
+    		halign: 'center'
+    		text: '#11'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '11'
+    		halign: 'center'
+    		text: '#6'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+    	Button:
+    		idi: '12'
+    		halign: 'center'
+    		text: '#22'
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			on_release:
+				root.update(self.idi)
+
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+		Button:
+			text:"Маршрутки".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "trans_root"
+		Button:
+			text: "Далее".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "sites"
+
+
+
+<Transport>:
+	name: 'trans'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Маршрутки'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 25
+
+	GridLayout:
+		cols: 3  
+		rows: 5
+		padding: [20, 100, 20, 340]
+    	Button:
+    		idi: '1'
+    		halign: 'center'
+    		text: '#42' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '2'
+    		halign: 'center'
+    		text: '#28' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '3'
+    		halign: 'center'
+    		text: '#68' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '4'
+    		halign: 'center'
+    		text: '#25' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '5'
+    		halign: 'center'
+    		text: '#84' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '6'
+    		halign: 'center'
+    		text: '#96' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+	
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [160, 20, 200, 230]
+		spacing: 40
+		Label:
+	    	text: 'Старайтесь избегать поездок на этих\nмаршрутах:\n'.encode('cp1251').decode('utf-8') + str(root.top_warn()) + " заболевших\n".encode('cp1251').decode('utf-8') + str(root.top_warn2()) + " заболевших\n".encode('cp1251').decode('utf-8') + str(root.top_warn3()) + " заболевших".encode('cp1251').decode('utf-8')
+	    	size_hint: None, None
+	    	color: 0, 0, 0, 1
+	    	font_size: 17
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+		Button:
+			text: "Троллейбусы".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "troll"
+		
+		Button:
+			text:"В меню".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+<Transport_Troll>:
+	name: 'troll'
+	FloatLayout:
+	    orientation: 'horizontal'
+	    canvas:
+	    	Rectangle:
+	            source: "pic_z.png"
+	            size: self.size
+	            pos: self.pos
+	AnchorLayout:
+    	anchor_x: 'center'
+    	anchor_y: 'top'
+    	Label:
+    		text: 'Троллейбусы'.encode('cp1251').decode('utf-8')
+    		size_hint: None, None
+    		color: 0, 0, 0, 1
+    		font_size: 25
+	GridLayout:
+		cols: 3  
+		rows: 4
+		padding: [20, 100, 20, 340]
+    	Button:
+    		idi: '7'
+    		halign: 'center'
+    		text: '#1' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '8'
+    		halign: 'center'
+    		text: '#15' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '9'
+    		halign: 'center'
+    		text: '#107' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '10'
+    		halign: 'center'
+    		text: '#11' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '11'
+    		halign: 'center'
+    		text: '#6' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+    	Button:
+    		idi: '12'
+    		halign: 'center'
+    		text: '#22' + '\n' + 'Заболевших: '.encode('cp1251').decode('utf-8') + str(root.select(self.idi))
+    		size: 50, 50
+    		color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [160, 20, 200, 230]
+		spacing: 40
+		Label:
+	    	text: 'Старайтесь избегать поездок на этих\nмаршрутах:\n'.encode('cp1251').decode('utf-8') + str(root.top_warn()) + " заболевших\n".encode('cp1251').decode('utf-8') + str(root.top_warn2()) + " заболевших\n".encode('cp1251').decode('utf-8') + str(root.top_warn3()) + " заболевших".encode('cp1251').decode('utf-8')
+	    	size_hint: None, None
+	    	color: 0, 0, 0, 1
+	    	font_size: 17
+
+	BoxLayout:
+		orientation: "vertical"
+        height: 10
+		padding: [60, 20, 200, 60]
+		spacing: 40
+		Button:
+			text:"Маршрутки".encode('cp1251').decode('utf-8')
+			color:1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "trans"
+		Button:
+			text: "В меню".encode('cp1251').decode('utf-8')
+			color: 1,1,1,1
+			background_color: 0.1, 0.5, 0.6, 1
+			size_hint: None, None
+			font_size: 25
+			size: 290, 50
+			opacity: 1
+			on_release: app.root.current = "menu"
+
+	
+
